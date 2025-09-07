@@ -1,180 +1,283 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HB Carpentry | Precision Carpentry & Construction Across Gloucestershire</title>
-  <meta name="description" content="HB Carpentry — expert carpentry, joinery, renovations & more across Stroud, Gloucester, Cheltenham, the Cotswolds and surrounding areas." />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>H.B Carpentry Services — Home</title>
+  <meta name="description" content="Made to measure, built to last — carpentry and building services in Stroud and surrounding areas throughout Gloucestershire.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cardo:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#ffffff;
+      --ink:#111111;
+      --muted:#555555;
+      --brand:#ffc702;
+      --accent:#0a0a0a;
+      --card:#f7f7f7;
+      --radius:16px;
+      --radius-lg:24px;
+      --shadow:0 10px 30px rgba(0,0,0,.08);
+      --wrap:1100px;
+      --gap:clamp(16px,2vw,24px);
+      --pad:clamp(16px,3vw,32px);
+      --pad-lg:clamp(28px,5vw,64px);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      color:var(--ink);
+      background:var(--bg);
+      font:16px/1.6 'Inter', system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif;
+    }
+    img{max-width:100%; display:block}
+    a{color:inherit; text-decoration:underline}
+    .wrap{max-width:var(--wrap); margin:0 auto; padding:0 var(--pad)}
+    .btn{display:inline-block; padding:.7rem 1rem; border-radius:4px; text-decoration:none; border:1px solid #000; background:#000; color:#fff}
+    .btn:hover{transform:translateY(-1px); background:#333; border-color:#333}
+    .chip{display:inline-block; padding:.5rem .9rem; border-radius:999px; background:var(--card); border:1px solid #eee; text-decoration:none}
+    .stack{display:flex; flex-direction:column; gap:var(--gap)}
+    .grid{display:grid; gap:var(--gap)}
+    .grid-2{grid-template-columns:repeat(2,1fr)}
+    .grid-3{grid-template-columns:repeat(3,1fr)}
+    @media (max-width: 900px){
+      .grid-2,.grid-3,.grid-4{grid-template-columns:1fr}
+      .process .step{
+        grid-template-columns:40px 1fr;
+        gap:16px;
+        padding:16px;
+        border:1px solid #eee;
+        border-radius:12px;
+        background:#fff;
+      }
+      .process .step + .step{margin-top:12px}
+      .process .bubble{width:40px; height:40px; font-size:16px}
+    }
+    header.site{
+      position:sticky; top:0; z-index:10; background:rgba(255,255,255,0.95);
+      border-bottom:1px solid rgba(238,238,238,0.3);
+      backdrop-filter:blur(10px);
+    }
+    header.site .inner{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:.9rem var(--pad)}
+    .brand{display:flex; align-items:center; gap:.6rem; font-weight:700}
+    .brand .logo{width:28px;height:28px;border-radius:8px;background:#eee}
+    /* HERO */
+    .hero{
+      min-height:100vh;
+      position:relative;
+      display:flex; align-items:center;
+      isolation:isolate;
+      color:#000;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+    }
+    .hero::before{
+      content:"";
+      position:absolute; inset:0;
+      background: url('https://hbcarpentry35acb6ca17.wordpress.com/wp-content/uploads/2025/05/img20221003104250-1.jpg?w=1600') center/cover no-repeat;
+      z-index:-2;
+    }
+    .hero::after{
+      content:""; position:absolute; inset:0;
+      background:rgba(255,255,255,0.7);
+      z-index:-1;
+    }
+    .hero .content{
+      max-width:var(--wrap);
+      margin:0 auto;
+      padding:0 var(--pad);
+      width:100%;
+    }
+    h1{font-family: 'Cardo', Georgia, serif; font-size:clamp(26px, 2.6vw + 12px, 40px); line-height:1.15; margin:0 0 .3rem}
+    h2{font-family: 'Cardo', Georgia, serif; font-size:clamp(20px, 1.4vw + 10px, 28px); line-height:1.25; margin:0}
+    h3{font-family: 'Cardo', Georgia, serif; font-size:clamp(18px, 1vw + 10px, 22px); line-height:1.2; margin:0}
+    p{margin:.2rem 0 0}
+    section{
+      padding:clamp(48px, 8vw, 80px) 0; 
+      margin: 100px 0
+    }
+    .hero{margin-top:0}
+    .services, .process, .about, .stack{margin-top:100px}
+    .services .chips{display:flex; flex-wrap:wrap; gap:.6rem}
+    /* PROCESS */
+    .process .step{display:grid; grid-template-columns:48px 1fr; gap:12px; align-items:start}
+    .bubble{
+      width:48px;height:48px;border-radius:999px; display:grid; place-items:center;
+      background:#111; color:#fff; font-weight:700;
+    }
+    /* ABOUT */
+    .about .image{
+      border-radius:var(--radius-lg); overflow:hidden; box-shadow:var(--shadow);
+      aspect-ratio:1; object-fit:cover; width:100%;
+    }
+    /* FAQ */
+    details{
+      background:var(--card); border:1px solid #eee; border-radius:var(--radius);
+      padding:1rem 1.2rem;
+    }
+    details+details{margin-top:var(--gap)}
+    summary{cursor:pointer; font-weight:600}
+    /* TESTIMONIALS */
+    .t-card{
+      background:var(--card); border:1px solid #eee; border-radius:var(--radius);
+      padding:var(--pad); display:flex; flex-direction:column; gap:12px;
+    }
+    .quote-mark{width:24px; height:24px}
+    footer.site{padding:40px 0; border-top:1px solid #eee; color:var(--muted); text-align:center}
+
+  </style>
 </head>
 <body>
-  <!-- Header -->
-  <header class="site-header">
-    <div class="container header-inner">
-      <div class="logo">
-        <div class="logo-mark">HB</div>
-        <div class="logo-text">
-          <span class="brand">HB Carpentry</span>
-          <span class="sub">Carpentry & Construction</span>
-        </div>
-      </div>
-      <nav class="nav">
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#services">Services</a>
-        <a href="#portfolio">Portfolio</a>
-        <a href="#contact" class="btn btn-outline">Contact</a>
+  <header class="site">
+    <div class="inner wrap">
+      <div class="brand"><span class="logo" aria-hidden="true"></span> H.B Carpentry Services</div>
+      <nav aria-label="Primary">
+        <a class="btn" href="https://hbcarpentryservices.com/contact-us/">Get an estimate</a>
       </nav>
     </div>
   </header>
 
-  <!-- Hero -->
-  <section id="home" class="hero">
-    <div class="overlay"></div>
-    <div class="container hero-grid">
-      <div class="hero-copy">
-        <p class="eyebrow">Precision Carpentry & Construction Services Across Gloucestershire</p>
-        <h1 class="hero-title">HB Carpentry</h1>
-        <p class="hero-sub">
-          Expert carpentry, joinery, renovations & more – covering Stroud, Gloucester, Cheltenham,
-          The Cotswolds and surrounding areas.
-        </p>
-        <a href="#quote" class="btn btn-primary">Request Your Free, No-Obligation Quote Today!</a>
-      </div>
-
-      <!-- Typeform embed panel -->
-      <aside id="quote" class="quote-card">
-        <h3>Get Your Free Quote Today</h3>
-        <!-- Replace YOUR_FORM_ID with your live Typeform ID -->
-        <div class="typeform-embed">
-          <iframe
-            title="HB Carpentry — Quote Request"
-            src="https://form.typeform.com/to/YOUR_FORM_ID?typeform-medium=embed"
-            frameborder="0"
-            allow="camera; microphone; autoplay; encrypted-media; fullscreen;"
-          ></iframe>
-        </div>
-        <p class="small-note">
-          Prefer email? <a href="mailto:hello@hbcarpentry.co.uk">hello@hbcarpentry.co.uk</a>
-        </p>
-      </aside>
-    </div>
-  </section>
-
-  <!-- Reviews -->
-  <section class="reviews">
-    <div class="container">
-      <div class="reviews-head">
-        <div class="rating-badge">
-          <div class="stars" aria-hidden="true">★★★★★</div>
-          <div class="rating-text"><strong>5.0</strong> based on customer reviews</div>
-        </div>
-        <a class="btn btn-outline" href="#" aria-label="Leave a Google review">Review us on Google</a>
-      </div>
-
-      <div class="review-cards">
-        <article class="review">
-          <div class="avatar">B</div>
-          <div>
-            <h4>Barnaby Anderson</h4>
-            <div class="stars" aria-hidden="true">★★★★★</div>
-            <p>Excellent service, reliable, good workmanship and great value. Would recommend and use again.</p>
-          </div>
-        </article>
-        <article class="review">
-          <div class="avatar">B</div>
-          <div>
-            <h4>Barbara Wood</h4>
-            <div class="stars" aria-hidden="true">★★★★★</div>
-            <p>HB Carpentry did an excellent job on a very difficult project. Highly recommended.</p>
-          </div>
-        </article>
-        <article class="review">
-          <div class="avatar">M</div>
-          <div>
-            <h4>Moe Mowing</h4>
-            <div class="stars" aria-hidden="true">★★★★★</div>
-            <p>We use HB as a sub-contractor for technical timber projects. Always efficient and professional.</p>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- Services -->
-  <section id="services" class="services">
-    <div class="container">
-      <h2 class="section-title">Services</h2>
-      <div class="cards">
-        <article class="card">
-          <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1400&auto=format&fit=crop');"></div>
-          <div class="card-body">
-            <h3>First &amp; Second Fix Carpentry</h3>
-            <p>Providing expert first and second fix carpentry services tailored to your needs.</p>
-          </div>
-        </article>
-        <article class="card">
-          <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1519710164239-da123dc03ef4?q=80&w=1400&auto=format&fit=crop');"></div>
-          <div class="card-body">
-            <h3>Kitchen Installations</h3>
-            <p>Specialising in seamless and high-quality kitchen installations.</p>
-          </div>
-        </article>
-        <article class="card">
-          <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1567016432779-094069958ea5?q=80&w=1400&auto=format&fit=crop');"></div>
-          <div class="card-body">
-            <h3>Renovations &amp; Restorations</h3>
-            <p>Delivering exceptional renovations and restorations to transform your space.</p>
-          </div>
-        </article>
-        <article class="card">
-          <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1519710164239-da123dc03ef4?q=80&w=1400&auto=format&fit=crop');"></div>
-          <div class="card-body">
-            <h3>Bespoke Joinery &amp; Storage Solutions</h3>
-            <p>Creating tailored joinery and storage solutions to perfectly fit your space.</p>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- Local CTA -->
-  <section id="about" class="local-cta">
-    <div class="overlay"></div>
-    <div class="container">
-      <h2>Gloucestershire Carpenter</h2>
-      <p>
-        A locally trusted carpentry service in Gloucestershire, specialising in custom interior and exterior joinery,
-        complete kitchen installations, first and second fix projects, and a wide range of general construction services.
-        From minor repairs to large-scale projects, we’ve got you covered!
-      </p>
-      <a href="#contact" class="btn btn-primary">Get In Touch With Hayden</a>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer id="contact" class="site-footer">
-    <div class="container footer-grid">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="content stack">
+      <h1>Have Your Space <br/>Transformed by Us</h1>
+      <p>Made to measure, built to last — carpentry and building services in Stroud and surrounding areas throughout Gloucestershire.</p>
       <div>
-        <div class="logo small">
-          <div class="logo-mark">HB</div>
-          <div class="logo-text">
-            <span class="brand">HB Carpentry</span>
-            <span class="sub">Carpentry & Construction</span>
-          </div>
-        </div>
-        <p class="muted">© HB Carpentry 2025</p>
-      </div>
-      <div class="footer-links">
-        <a href="#" aria-label="Facebook">Facebook</a>
-        <a href="#" aria-label="Instagram">Instagram</a>
-        <a href="mailto:hello@hbcarpentry.co.uk">hello@hbcarpentry.co.uk</a>
-        <a href="#quote">Get a Quote</a>
+        <a class="btn" href="https://hbcarpentryservices.com/contact-us/">Get in Touch</a>
       </div>
     </div>
+  </section>
+
+  <main>
+    <!-- INTRO / SERVICES -->
+    <section class="wrap stack services">
+      <p>Based in Stroud, Gloucestershire, we are specialists in high-quality residential carpentry. From first and second fix carpentry to full garage conversions, kitchen fitting, and custom-built storage, we deliver tailored solutions with precision and care. Whether you're renovating a home, transforming unused space, or looking for bespoke wardrobes and alcove units, our experienced team brings craftsmanship and reliability to every project. We proudly serve homeowners across Stroud and the surrounding Cotswolds area. Get in touch today for a free quote or consultation.</p>
+      <div class="chips" role="list" aria-label="Key services">
+        <span class="chip" role="listitem">Bespoke Storage Solutions</span>
+        <span class="chip" role="listitem">First &amp; Second Fix Carpentry</span>
+        <span class="chip" role="listitem">Kitchen, Window &amp; Door Fitting</span>
+      </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section class="wrap process stack">
+      <h2>We Follow a Successful Process and Get Your Work Done</h2>
+      <div class="grid grid-4 grid-2">
+        <div class="step">
+          <div class="bubble">1</div>
+          <div>
+            <h3>Get in touch</h3>
+            <p>You share your needs with us and we will arrange to visit and discuss the works further.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="bubble">2</div>
+          <div>
+            <h3>Home visit</h3>
+            <p>We come out to discuss the works you would like, measure up and get a feel for what you need.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="bubble">3</div>
+          <div>
+            <h3>Detailed estimate</h3>
+            <p>We send you details and a cost estimate of your project needs.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="bubble">4</div>
+          <div>
+            <h3>Task completion</h3>
+            <p>Our team will do the assigned task while you relax and get your improvements done.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="wrap about">
+      <div class="grid grid-2" style="align-items:center">
+        <div class="stack" style="padding-right:var(--pad)">
+          <h2>With Over a Decade of Experience, Providing Excellence in Home Services</h2>
+          <p>H.B Carpentry is a family run business with an attention to detail. We are “highly recommended” by customers in the home improvement industry and hold over a decade of dedicated service. We are always happy to help and to make your visions come true, working with customers to make a house a home. For your free quotation or to enquire please do get in touch.</p>
+          <div class="">
+            <div style="display:flex; align-items:center; gap:.6rem">
+              <span style="font-size:1.4rem">☛</span>
+              <p style="margin:0; font-weight:600">Trustworthy and reliable team members</p>
+            </div>
+            <div style="display:flex; align-items:center; gap:.6rem">
+              <span style="font-size:1.4rem">☛</span>
+              <p style="margin:0; font-weight:600">Professional Services</p>
+            </div>
+            <div style="display:flex; align-items:center; gap:.6rem">
+              <span style="font-size:1.4rem">☛</span>
+              <p style="margin:0; font-weight:600">Competitive Prices</p>
+            </div>
+          </div>
+        </div>
+        <img class="image" alt="" src="https://hbcarpentry35acb6ca17.wordpress.com/wp-content/uploads/2025/05/photo-2025-05-27-17-44-27.jpg">
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="wrap stack">
+      <div class="grid grid-2">
+        <div class="stack">
+          <p style="text-transform:uppercase; letter-spacing:.03rem; font-weight:600; font-size:.9rem">More about us</p>
+          <h2>Frequently Asked Questions</h2>
+        </div>
+        <div>
+          <details open>
+            <summary>Will I receive a response within 24–48 hours?</summary>
+            <p>Yes, absolutely! Our commitment is to get back to you promptly within 24–48 hours from the time of your inquiry. Your time is valuable, and we strive to provide swift and efficient communication.</p>
+          </details>
+          <details>
+            <summary>What is your rate, and do you have a job minimum?</summary>
+            <p>Our rates are competitive, reflecting the high-quality services we offer. For detailed pricing information please reach out directly. We ensure transparent and fair estimates tailored to your specific project needs. There is no job too small and if we are not the right person for the job we will do our best to advise someone who might be better suited.</p>
+          </details>
+          <details>
+            <summary>Can I expect multiple estimates for my project?</summary>
+            <p>Certainly! We believe in empowering our customers with options. You can expect to receive multiple estimates, each outlining different approaches and costs for your project. This way, you have the flexibility to choose the solution that best aligns with your preferences and budget.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="wrap stack">
+      <div class="stack">
+        <p style="text-transform:uppercase; letter-spacing:.03rem; font-weight:600; font-size:.9rem">Testimonials</p>
+        <h2>Our Customers Say</h2>
+      </div>
+      <div class="grid grid-2">
+        <div class="t-card">
+          <img class="quote-mark" alt="" src="https://s0.wp.com/wp-content/themes/pub/fixmate/assets/images/speech-marks.png">
+          <p>Highly recommend Harry, not only is he exceptional at carpentry, he's also a genuinely great guy. Harry completed the following tasks for us... We were really happy with the finish and all completed in good time:</p>
+          <ul style="margin:0 0 0 1.1rem; padding:0">
+            <li>Kitchen fitting</li>
+            <li>Skirting and architrave</li>
+            <li>Hung internal doors</li>
+            <li>Boxing in pipes, toilets and boilers</li>
+            <li>Kitchen mantle over the hob with extractor</li>
+            <li>Various stud walls</li>
+          </ul>
+          <p>We will be using H.B Carpentry in the future and already recommending them to friends and family.</p>
+          <p style="margin-top:auto; font-weight:600">David Merrick</p>
+        </div>
+        <div class="t-card">
+          <img class="quote-mark" alt="" src="https://s0.wp.com/wp-content/themes/pub/fixmate/assets/images/speech-marks.png">
+          <p>Such an amazing piece of work from the Barretts — we were looking for an under-stair storage solution, but not quite sure where to start or what it could look like — from the very beginning to the final output they were super professional and clear — we are over the moon with our final under-stairs storage — it just looks so great, and it's completely transformed our living room!</p>
+          <p style="margin-top:auto; font-weight:600">Zoe Cantley-Wright</p>
+          <div><a class="btn" href="https://hbcarpentryservices.com/reviews/">See more</a></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site">
+    <div class="wrap">&copy; H.B Carpentry Services 2025</div>
   </footer>
 </body>
 </html>
+
